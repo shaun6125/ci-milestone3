@@ -6,3 +6,48 @@
 .col-md-7 h4 {
     margin-top: 100px;
 }
+
+.subheading {
+    margin-bottom: 30px;
+}
+
+.category_link {
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    transition: 250ms all;
+    
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0px 3px 6px rgba(0,0,0,.16);
+    margin-bottom: 30px;
+    
+}
+
+.image--large {
+    height: 330px;
+    width: 280px;
+    
+}
+
+.card--large {
+    width: 280px;    
+}
+
+.category_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.category-large {
+    margin: 25px;
+}
+
