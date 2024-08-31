@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h2>Register to create your own account today</h2>
+
+    <p>By creating your own account you will be able to build your very own online-cookbook, 
+        saving all your favorite recipies in one convinient location.</p>
+
+<!--username-->
+
+    <form method="POST" action="{{ url_for('register') }}">
+        <div class="form-floating mb-3">
+            <input type="username" class="form-control" id="floatingInput" placeholder="User Name">
+            <label for="floatingInput">User Name</label>
+        </div>
+
+<!--email address-->
+
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
+        </div>
+
+<!--password-->
+
+        <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
+
+<!--sign up-->
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" id="register"><i class="fas fa-sign-in-alt"></i> Register</button>
+        </div>
+    </form>
+
+{% endblock %}

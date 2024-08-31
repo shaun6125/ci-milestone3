@@ -45,6 +45,11 @@ def contact():
     return render_template("contact.html", page_title="Contact Us")
 
 
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    return render_template("register.html")
+
+
 if __name__ == "__main__":
     app.run(
         host=os.environ.get("IP","0.0.0.0"),
