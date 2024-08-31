@@ -5,6 +5,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+
 if os.path.exists("env.py"):
     import env
 
@@ -46,34 +47,33 @@ def contact():
     return render_template("contact.html", page_title="Contact Us")
 
 
+# Routing for the register page
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        # CHECK IF USERNAME OR EMAIL IS ALREADY REGISTERED ON SITE
+        # check if username already exists within the database
         existing_user = mongo.db.users.find_one(
-            {"user_name": request.form.get("username")})
-        # ERROR MESSAGE IF USERNAME ALREADY EXISTS
+            {"username": request.form.get("username").lower()})
+
         if existing_user:
-            flash("Sorry, that username already exists")
+            # message to alert user that the username already exists
+            flash("Username already exists, please try again")
+            # return user to register page to try again
             return redirect(url_for("register"))
 
-        existing_email = mongo.db.users.find_one(
-            {"user_email": request.form.get("email")})
-        # ERROR MESSAGE IF EMAIL ALREADY EXISTS
-        if existing_email:
-            flash("Sorry, that email's already registered")
-            return redirect(url_for("register"))
-        # DETAILS TO REGISTER IN MONGO DB FOR NEW USERS
+        # else if no existing user, register user
         register = {
-            "user_name": request.form.get("username"),
-            "user_email": request.form.get("email"),
-            "user_password": request.form.get("password")
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password"))
         }
         mongo.db.users.insert_one(register)
 
-        #put the new user into the 'session' cookie
-        session["user"] = request.form.get("username")
-        flash("Registration Successful!")
+        # put the new user into 'session' cookie
+        session["user"] = request.form.get("username").lower()
+        # message to alert user that their registration was successful
+        flash("Registration successful")
+        return redirect(url_for("profile", username=session["user"]))
+    
     
     return render_template("register.html")
 
