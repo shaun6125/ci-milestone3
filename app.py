@@ -12,7 +12,7 @@ if os.path.exists("env.py"):
 app = Flask(__name__)
 
 
-app.config["MONGO_DB"] = os.environ.get("MONGO_DB")
+app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
@@ -51,23 +51,23 @@ def register():
     if request.method == "POST":
         # CHECK IF USERNAME OR EMAIL IS ALREADY REGISTERED ON SITE
         existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username")})
+            {"user_name": request.form.get("username")})
         # ERROR MESSAGE IF USERNAME ALREADY EXISTS
         if existing_user:
             flash("Sorry, that username already exists")
             return redirect(url_for("register"))
 
         existing_email = mongo.db.users.find_one(
-            {"email": request.form.get("email")})
+            {"user_email": request.form.get("email")})
         # ERROR MESSAGE IF EMAIL ALREADY EXISTS
         if existing_email:
             flash("Sorry, that email's already registered")
             return redirect(url_for("register"))
         # DETAILS TO REGISTER IN MONGO DB FOR NEW USERS
         register = {
-            "username": request.form.get("username"),
-            "email": request.form.get("email"),
-            "password": request.form.get("password")
+            "user_name": request.form.get("username"),
+            "user_email": request.form.get("email"),
+            "user_password": request.form.get("password")
         }
         mongo.db.users.insert_one(register)
 
