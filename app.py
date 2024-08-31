@@ -32,7 +32,6 @@ def about():
     return render_template("about.html", page_title="About Us")
 
 
-@app.route("/")
 @app.route("/get_categories")
 def get_categories():
     categories = mongo.db.categories.find()
