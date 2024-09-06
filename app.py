@@ -53,28 +53,12 @@ def contact():
     return render_template("contact.html", page_title="Contact Us")
 
 
-# Routing for the register page
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    username = request.form.get("username")
-    if username:
-        username = username.lower()
-    else:
-        return "Username is required", 400
-
-    
-    if request.method == 'POST':
-        username = request.form.get("username")
-        if not username:
-            return "Username is required", 400  # Handle POST validation
-        # Process registration
-    return render_template('register.html')  # Render the registration page for GET
-    
-    
+@app.route("/register", methods=["GET", "POST"])
+def register():    
     if request.method == "POST":
         # check if username already exists within the database
-        existing_user = mongo.db.users.find_one(
-            {"username": request.form.get("username").lower()})
+        username = request.form.get("username").lower()
+        existing_user = mongo.db.users.find_one({"username": username})
 
         if existing_user:
             # message to alert user that the username already exists
@@ -82,18 +66,25 @@ def register():
             # return user to register page to try again
             return redirect(url_for("register"))
 
-        # else if no existing user, register user
+        # else if no existing user, register the user
         register = {
-            "username": request.form.get("username").lower(),
+            "username": username,
+            "email": request.form.get("email").lower(),
             "password": generate_password_hash(request.form.get("password"))
         }
         mongo.db.users.insert_one(register)
-    
-    return render_template("register.html")
 
+        # put the new user into 'session' cookie
+        session["user"] = username
+        flash("Registration Successful")
+        return redirect(url_for("register"))  # Redirect to home page or any other page after successful registration
+
+    # If it's a GET request, just render the registration form
+    return render_template('register.html')
 
 if __name__ == "__main__":
     app.run(
-        host=os.environ.get("IP","0.0.0.0"),
+        host=os.environ.get("IP", "0.0.0.0"),
         port=int(os.environ.get("PORT", "5000")),
-        debug=True)
+        debug=True
+    )
