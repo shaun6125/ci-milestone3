@@ -34,7 +34,14 @@ def about():
 
 @app.route("/get_categories")
 def get_categories():
-    categories = mongo.db.categories.find()
+    # Check MongoDB connection
+    print(mongo.db)  # This line should have the same indentation as the next line.
+
+    if mongo.db is not None:
+        categories = mongo.db.categories.find()
+        # Proceed with handling categories
+    else:
+        raise Exception("Database connection failed")
     return render_template("categories.html", categories=categories)
 
 
@@ -47,8 +54,23 @@ def contact():
 
 
 # Routing for the register page
-@app.route("/register", methods=["GET", "POST"])
+@app.route('/register', methods=['GET', 'POST'])
 def register():
+    username = request.form.get("username")
+    if username:
+        username = username.lower()
+    else:
+        return "Username is required", 400
+
+    
+    if request.method == 'POST':
+        username = request.form.get("username")
+        if not username:
+            return "Username is required", 400  # Handle POST validation
+        # Process registration
+    return render_template('register.html')  # Render the registration page for GET
+    
+    
     if request.method == "POST":
         # check if username already exists within the database
         existing_user = mongo.db.users.find_one(
@@ -66,13 +88,6 @@ def register():
             "password": generate_password_hash(request.form.get("password"))
         }
         mongo.db.users.insert_one(register)
-
-        # put the new user into 'session' cookie
-        session["user"] = request.form.get("username").lower()
-        # message to alert user that their registration was successful
-        flash("Registration successful")
-        return redirect(url_for("profile", username=session["user"]))
-    
     
     return render_template("register.html")
 

@@ -10,21 +10,22 @@
 
     <form method="POST" action="{{ url_for('register') }}">
         <div class="form-floating mb-3">
-            <input type="username" class="form-control" id="floatingInput" placeholder="User Name">
-            <label for="floatingInput">User Name</label>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" class="form-control" id="floatingInput" placeholder="User Name" required>
+            <button type="submit">Register</button>
         </div>
 
 <!--email address-->
 
         <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <input type="text" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
             <label for="floatingInput">Email address</label>
         </div>
 
 <!--password-->
 
         <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <input type="text" name="password" class="form-control" id="floatingPassword" placeholder="Password">
             <label for="floatingPassword">Password</label>
         </div>
 
