@@ -54,3 +54,9 @@
 #register {
     Margin-top: 50px;
 }
+
+.flashes h4 {
+    line-height: 4;
+    background-color: lightskyblue;
+    text-align:center;
+}

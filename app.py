@@ -77,9 +77,9 @@ def register():
         # put the new user into 'session' cookie
         session["user"] = username
         flash("Registration Successful")
-        return redirect(url_for("register"))  # Redirect to home page or any other page after successful registration
+        return redirect(url_for("register"))  # Redirect to registration page after successful registration
 
-    # If it's a GET request, just render the registration form
+    # Render the registration form
     return render_template('register.html')
 
 if __name__ == "__main__":
