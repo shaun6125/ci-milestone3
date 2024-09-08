@@ -1,24 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h2>Register to create your own account today</h2>
-
-    <p>By creating your own account you will be able to build your very own online-cookbook, 
-        saving all your favorite recipies in one convinient location.</p>
+    <h2>Log In</h2>
 
 <!--username-->
 
-    <form method="POST" action="{{ url_for('register') }}">
+    <form method="POST" action="{{ url_for('login') }}">
         <div class="form-floating mb-3">
             <input type="text" name="username" class="form-control validate" id="floatingInput" placeholder="User Name" minlength="4" maxlength="15" pattern="^[a-zA-Z0-9]{4,15}$" required>
             <label for="username">Username:</label>
-        </div>
-
-<!--email address-->
-
-        <div class="form-floating mb-3">
-            <input type="text" name="email" class="form-control validate" id="floatingInput" placeholder="name@example.com" required>
-            <label for="floatingInput">Email address</label>
         </div>
 
 <!--password-->
@@ -31,14 +21,14 @@
 <!--sign up-->
 
         <div class="form-group">
-            <button type="submit" class="btn btn-primary" id="register"><i class="fas fa-sign-in-alt"></i> Register</button>
+            <button type="submit" class="btn btn-primary" id="login"><i class="fas fa-sign-in-alt"></i> Log In</button>
         </div>
     </form>
 
     <div class="row">
         <div class="col s12">
             <p class="center-align">
-                Already registered? <a href="{{ url_for('login') }}" class="light-blue-text text-darken-4">Log In</a>
+                New here? <a href="{{ url_for('register') }}" class="light-blue-text text-darken-4">Register Account</a>
             </p>
         </div>
     </div>
