@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h2>Upload your recipe</h2>
+
+    <div class="accordion" id="accordionExample">
+        {% for recipies in recipe %}    
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <strong>{{ recipies.recipe_name }}</strong>
+                    
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <img src="{{recipies.recipe_image}}"></a>
+                    <strong>{{ recipies.category_ingredients}}</strong>
+                    <p>{{ recipies.recipe_ingredients }}</p>                    
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <strong>{{ recipies.category_method }}</strong>
+                    
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <strong>{{ recipies.category_method }}</strong>
+                    <p>{{ recipies.recipe_method }}</p>
+                    <p>{{ recipies.origin_name}}</p>
+                    <p>{{ recipies.date_added}}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}        
+    </div>
+
+{% endblock %}

@@ -32,17 +32,17 @@ def about():
     return render_template("about.html", page_title="About Us")
 
 
-@app.route("/get_categories")
-def get_categories():
+@app.route("/get_recipe")
+def get_recipe():
     # Check MongoDB connection
     print(mongo.db)  # This line should have the same indentation as the next line.
 
     if mongo.db is not None:
-        categories = mongo.db.categories.find()
-        # Proceed with handling categories
+        recipe = mongo.db.recipe.find()
+        # Proceed with handling recipe
     else:
         raise Exception("Database connection failed")
-    return render_template("categories.html", categories=categories)
+    return render_template("recipies.html", recipe=recipe)
 
 
 @app.route("/contact", methods=["GET", "POST"])
