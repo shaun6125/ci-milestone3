@@ -41,19 +41,6 @@ def recipies():
     return render_template("recipies.html", recipe=recipies)
 
 
-@app.route("/get_recipe")
-def get_recipe():
-    # Check MongoDB connection
-    print(mongo.db)  # This line should have the same indentation as the next line.
-
-    if mongo.db is not None:
-        recipe = mongo.db.recipe.find()
-        # Proceed with handling recipe
-    else:
-        raise Exception("Database connection failed")
-    return render_template("recipies.html", recipe=recipies)
-
-
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
     if request.method == "POST":

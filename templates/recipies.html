@@ -3,8 +3,8 @@
 
     <h2>Upload your recipe</h2>
 
-    {% if recipes|length > 0 %}
-    <div class="accordion" id="accordionExample">
+    
+    <div class="accordion" id="accordionExample">        
         {% for recipies in recipe %}    
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
@@ -18,28 +18,16 @@
 
                     <img src="{{recipies.recipe_image}}"></a>
                     <strong>{{ recipies.category_ingredients}}</strong>
-                    <p>{{ recipies.recipe_ingredients }}</p>                    
-                </div>
-            </div>
-        </div>
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <strong>{{ recipies.category_method }}</strong>
-                    
-                </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                    <strong>{{ recipies.category_method }}</strong>
-                    <p>{{ recipies.recipe_method }}</p>
+                    <strong>{{ recipies.recipe_ingredients }}</strong>
+                    <p>{{ recipies.category_method }}</p> 
                     <p>{{ recipies.origin_name}}</p>
-                    <p>{{ recipies.date_added}}</p>
+                    <p>{{ recipies.date_added}}</p>                   
                 </div>
             </div>
         </div>
+        
         {% endfor %}        
     </div>
-    {% endif %}
+    
 
 {% endblock %}
