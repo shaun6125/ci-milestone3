@@ -32,6 +32,15 @@ def about():
     return render_template("about.html", page_title="About Us")
 
 
+# Routing for the recipes page
+@app.route("/recipies")
+# find recipes from MongoDB database and render to recipes template
+def recipies():
+    # display last added recipe first
+    recipies = list(mongo.db.recipe.find().sort("_id", -1))
+    return render_template("recipies.html", recipe=recipies)
+
+
 @app.route("/get_recipe")
 def get_recipe():
     # Check MongoDB connection
@@ -42,7 +51,7 @@ def get_recipe():
         # Proceed with handling recipe
     else:
         raise Exception("Database connection failed")
-    return render_template("recipies.html", recipe=recipe)
+    return render_template("recipies.html", recipe=recipies)
 
 
 @app.route("/contact", methods=["GET", "POST"])
@@ -131,6 +140,30 @@ def logout():
     session.pop("user")
     return redirect(url_for("login"))
 
+
+@app.route("/add_recipe", methods=["GET", "POST"])
+def add_recipe():
+    if request.method == "POST":
+        # get add recipe form inputs to add to database
+        recipe = {
+            "category_name": request.form.get("category_name"),
+            "recipe_name": request.form.get("recipe_name"),
+            "category_ingredients": request.form.get("category_ingredients"),
+            "recipe_ingredients": request.form.get("recipe_ingredients"),
+            "category_method": request.form.get("category_method"),
+            "recipe_method": request.form.get("recipe_method"),
+            "created_by": session["user"]
+        }
+        # insert into database
+        mongo.db.recipe.insert_one(recipe)
+        # success message
+        flash("Recipe successfully added")
+        # return user to recipe page
+        return redirect(url_for("recipies"))
+
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template("add_recipe.html", categories=categories)
+    return render_template("add_recipe.html")
 
 if __name__ == "__main__":
     app.run(

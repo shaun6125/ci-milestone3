@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="center-align">Add recipe</h3>
+
+<!-- Form template from Materialize -->
+<div class="row">
+    <form class="col s12" method="POST" action="{{ url_for('add_recipe')}}">
+        <!-- Recipe category selection field -->
+        <i class="fas fa-folder-open"></i>
+        <label for="category_name">Task Category</label>
+        <select class="form-select" aria-label="Default select example" id="category_name" name="category_name">
+            <option value="" disabled selected>Choose Category</option>
+                {% for category in categories %}
+                    <option value="{{ category.category_name }}">
+                        {{ category.category_name }}</option>
+                {% endfor %}
+        </select>
+        
+        <div class="mb-3">
+            <i class="fa-solid fa-upload"></i>
+            <label for="formFile" class="form-label">Upload your image here</label>
+            <input class="form-control" type="file" id="formFile">
+        </div>
+
+        <!-- Recipe name field -->
+        <div class="row">
+            <div class="mb-3">
+                <!-- Icon from Font Awesome -->
+                <i class="fas fa-pencil-alt prefix text-accent-3"></i>
+                <label for="recipe_name" class="form-label validate">Recipe Name</label>
+                <textarea class="form-control" id="recipe_name" name="recipe_name" rows="3" minlenght="5" maxlength="50"
+                type="text" class="validate" required></textarea>
+            </div>            
+        </div>
+        
+        <!-- Recipe ingredients field -->
+
+        <div class="row">
+            <div class="mb-3">
+                <!-- Icon from Font Awesome -->
+                <i class="fas fa-shopping-cart prefix text-accent-3"></i>
+                <label for="recipe_ingredients" class="form-label validate">Recipe Ingredients</label>
+                <textarea class="form-control" id="recipe_ingredients" name="recipe_ingredients" rows="3" minlenght="5" maxlength="500"
+                type="text" class="validate" required></textarea>
+            </div>            
+        </div>
+
+       
+        <!-- Recipe method field -->
+
+        <div class="row">
+            <div class="mb-3">
+                <!-- Icon from Font Awesome -->
+                <i class="fas fa-list-ol prefix text-accent-3"></i>
+                <label for="recipe_method" class="form-label validate">Recipe Method</label>
+                <textarea class="form-control" id="recipe_method" name="recipe_method" rows="5" minlenght="5" maxlength="2000"
+                type="text" class="validate" required></textarea>
+            </div>            
+        </div>
+
+        
+        <!-- Submit form button -->
+
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <button class="btn btn-primary btn-dark btn-lg">Submit Recipe
+                <i class="fas fa-plus-square right"></i>
+            </button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

@@ -3,6 +3,7 @@
 
     <h2>Upload your recipe</h2>
 
+    {% if recipes|length > 0 %}
     <div class="accordion" id="accordionExample">
         {% for recipies in recipe %}    
         <div class="accordion-item">
@@ -14,6 +15,7 @@
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
+
                     <img src="{{recipies.recipe_image}}"></a>
                     <strong>{{ recipies.category_ingredients}}</strong>
                     <p>{{ recipies.recipe_ingredients }}</p>                    
@@ -38,5 +40,6 @@
         </div>
         {% endfor %}        
     </div>
+    {% endif %}
 
 {% endblock %}
