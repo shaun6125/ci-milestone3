@@ -8,11 +8,14 @@
         {% for recipies in recipe %}    
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <div class="accordion-button" type="button, text" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     <strong>{{ recipies.recipe_name }}</strong>
-                    
-                </button>
+                             
+                </div>
+                <a href="{{ url_for('edit_recipe',recipe_id=recipies._id)}}" class="btn btn-primary btn-dark btn-small " id="edit-btn">Edit</a> 
+                <a href="" class="btn btn-primary btn-dark btn-small " id="delete-btn">Delete</a>                
             </h2>
+            
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
 
