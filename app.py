@@ -139,6 +139,7 @@ def add_recipe():
             "recipe_ingredients": request.form.get("recipe_ingredients"),
             "category_method": request.form.get("category_method"),
             "recipe_method": request.form.get("recipe_method"),
+            "date_added": request.form.get("date_added"),
             "created_by": session["user"]
         }
         # insert into database
@@ -164,10 +165,11 @@ def edit_recipe(recipe_id):
             "recipe_ingredients": request.form.get("recipe_ingredients"),
             "category_method": request.form.get("category_method"),
             "recipe_method": request.form.get("recipe_method"),
+            "date_added": request.form.get("date_added"),
             "created_by": session["user"]
         }
         # find recipe in database and update with new form details
-        mongo.db.recipes.update({"_id": ObjectId(recipe_id)}, submit)
+        mongo.db.recipies.update({"_id": ObjectId(recipe_id)}, submit)
         # success message
         flash("Recipe successfully updated")
     # find the recipe in database

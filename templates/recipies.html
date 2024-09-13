@@ -18,13 +18,13 @@
             
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-
-                    <img src="{{recipies.recipe_image}}"></a>
-                    <strong>{{ recipies.category_ingredients}}</strong>
-                    <strong>{{ recipies.recipe_ingredients }}</strong>
-                    <p>{{ recipies.category_method }}</p> 
-                    <p>{{ recipies.origin_name}}</p>
-                    <p>{{ recipies.date_added}}</p>                   
+                    <img src="{{recipe.recipe_image}}">
+                    <strong>Ingredients</strong>
+                    <p>{{ recipies.recipe_ingredients }}</p>                    
+                    <strong>Method</strong>                    
+                    <p>{{ recipies.recipe_method }}</p>
+                    <strong>Origin:</strong>{{ recipies.category_name }}
+                    <strong>Published:</strong>{{ recipies.date_added }}                   
                 </div>
             </div>
         </div>
