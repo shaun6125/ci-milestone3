@@ -8,25 +8,36 @@
         {% for recipies in recipe %}    
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
-                <div class="accordion-button" type="button, text" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <strong>{{ recipies.recipe_name }}</strong>
+                <div class="accordion-button" type="button, text" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <h3>{{ recipies.recipe_name }}</h3>
                              
-                </div>
-                {% if session.user|lower == recipe.created_by|lower %}
-                <a href="{{ url_for('edit_recipe',recipe_id=recipies._id)}}" class="btn btn-primary btn-dark btn-small " id="edit-btn">Edit</a> 
-                <a href="" class="btn btn-primary btn-dark btn-small " id="delete-btn">Delete</a>
-                {% endif %}                
+                </div>                                
             </h2>
             
-            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <img src="{{recipe.recipe_image}}">
-                    <strong>Ingredients</strong>
-                    <p>{{ recipies.recipe_ingredients }}</p>                    
-                    <strong>Method</strong>                    
-                    <p>{{ recipies.recipe_method }}</p>
-                    <strong>Origin:</strong>{{ recipies.category_name }}
-                    <strong>Published:</strong>{{ recipies.date_added }}                   
+                    <div class="card" style="width: 100%;">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <img src="{{recipe.recipe_image}}">   
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Ingredients</strong>
+                                <p>{{ recipies.recipe_ingredients }}</p>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Method</strong>                    
+                                <p>{{ recipies.recipe_method }}</p>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Origin:</strong> {{ recipies.category_name }}    <strong>Published:</strong> {{ recipies.date_added }}
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{{ url_for('edit_recipe',recipe_id=recipies._id)}}" class="btn btn-outline-secondary btn-lg px-4 me-md-6 " id="edit-btn">Edit</a> 
+                                <a href="{{ url_for('delete_recipe',recipe_id=recipies._id)}}" class="btn btn-primary btn-dark btn-lg px-4 me-md-2 " id="delete-btn">Delete</a>
+                            </li>                          
+                        </ul>
+                      </div>                             
                 </div>
             </div>
         </div>
