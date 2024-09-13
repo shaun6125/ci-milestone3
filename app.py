@@ -169,14 +169,15 @@ def edit_recipe(recipe_id):
             "created_by": session["user"]
         }
         # find recipe in database and update with new form details
-        mongo.db.recipies.update({"_id": ObjectId(recipe_id)}, submit)
+        mongo.db.recipe.update_one({"_id": ObjectId(recipe_id)}, {"$set": submit})
+
         # success message
         flash("Recipe successfully updated")
     # find the recipe in database
-    recipe = mongo.db.recipies.find_one({"_id": ObjectId(recipe_id)})
+    recipe = mongo.db.recipe.find_one({"_id": ObjectId(recipe_id)})
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template(
-        "edit_recipe.html", recipe=recipies, categories=categories)
+        "edit_recipe.html", recipe=recipe, categories=categories)
 
 
 if __name__ == "__main__":

@@ -5,7 +5,7 @@
 
 <!-- Form template from Materialize -->
 <div class="row">
-    <form class="col s12" method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id)}}"> 
+    <form class="col s12" method="POST" action="{{ url_for('edit_recipe', recipe_id=recipe._id) }}"> 
         <!-- Recipe category selection field -->
         <i class="fas fa-folder-open"></i>
         <label for="category_name">Task Category</label>
@@ -34,7 +34,7 @@
                 <i class="fas fa-pencil-alt prefix text-accent-3"></i>
                 <label for="recipe_name" class="form-label validate">Recipe Name</label>
                 <textarea class="form-control" id="recipe_name" name="recipe_name" rows="3" minlenght="5" maxlength="50"
-                type="text" value="{{ recipe.recipe_name }} class="validate" required></textarea>
+                type="text" class="validate" required>{{recipe.recipe_name}}</textarea>
             </div>            
         </div>
         
@@ -73,7 +73,7 @@
                 <i class="fas fa-pencil-alt prefix text-accent-3"></i>
                 <label for="date_added" class="form-label validate">Date added</label>
                 <textarea class="form-control" id="date_added" name="date_added" rows="1" minlenght="6" maxlength="50"
-                type="date" class="validate" required>{{- recipe.date_added -}}</textarea>
+                type="date" class="validate" required>{{ recipe.date_added }}</textarea>
             </div>            
         </div>
 
@@ -81,6 +81,10 @@
         <!-- Submit form button -->
 
         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <!--cancel button-->
+            <a href="{{ url_for('recipies') }}" class="btn btn-outline-secondary btn-lg px-4 me-md-2">
+                cancel <i class="fas fa-times-circle right"></i>
+            </a>
             <button class="btn btn-primary btn-dark btn-lg">Edit Recipe
                 <i class="fas fa-edit right"></i>
             </button>
