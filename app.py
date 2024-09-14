@@ -170,7 +170,9 @@ def add_recipe():
             "category_method": request.form.get("category_method"),
             "recipe_method": request.form.get("recipe_method"),
             "date_added": request.form.get("date_added"),
+            "recipe_image": request.form.get("recipe_image"),
             "created_by": session["user"]
+
         }
         # insert into database
         mongo.db.recipe.insert_one(recipe)
@@ -196,6 +198,7 @@ def edit_recipe(recipe_id):
             "category_method": request.form.get("category_method"),
             "recipe_method": request.form.get("recipe_method"),
             "date_added": request.form.get("date_added"),
+            "recipe_image": request.form.get("recipe_image"),
             "created_by": session["user"]
         }
         # find recipe in database and update with new form details
