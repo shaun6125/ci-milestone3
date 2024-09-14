@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ page_title }}</h2>
+
+<div class="card mb-3" style="width: 100%;">
+    <div class="row g-0">
+        <div class="col-md-3">
+            <img src="{{ url_for('static', filename= 'assets/img/pad-thai.jpg') }}" class="img-fluid rounded-start"
+                alt="pad thai">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h3 class="card-title">Easy pad Thai</h5>
+                    <br>
+                    <h5>Ingredients</h5>
+                    <ul>
+                        <li>125g (half a 250g pack) rice noodles</li>
+                        <li>3 tbsp lime juice about 2 limes</li>
+                        <li>½ tsp cayenne pepper</li>
+                        <li>2 tsp light muscovado sugar</li>
+                        <li>2 tbsp fish sauce</li>
+                        <li>2 tbsp vegetable oil</li>
+                        <li>200g cooked and peeled tiger prawn, tails left on</li>
+                        <li>4 spring onions, sliced</li>
+                        <li>140g beansprout</li>
+                        <li>25g salted peanut, finely chopped</li>
+                        <li>a small handful of coriander leaves</li>
+                        <li><strong>To serve</strong></li>
+                        <li>1 or 2 lime, cut into wedges</li>
+                        <li>sweet chilli sauce</li>
+                    </ul>
+                    <br>
+                    <h5>Method</h5>
+                    <p class="card-text"><strong>STEP 1</strong>
+                        <br>
+                        Put the noodles in a large heatproof bowl, pour boiling water over them and leave for 4
+                        minutes, then drain and refresh under cold running water. Put the lime juice, cayenne, sugar
+                        and fish sauce in a bowl and mix well. Have all the other ingredients ready by the cooker.
+                        <br>
+                        <br>
+
+                        <strong>STEP 2</strong>
+                        <br>
+                        Heat the oil and fry the prawns until warmed through. Add the spring onions and noodles and
+                        toss around. Tip in the lime juice mixture, then stir in the beansprouts and half the
+                        peanuts and coriander. Cook for 1 minute until everything is heated through.
+                        <br>
+                        <br>
+
+                        <strong>STEP 3</strong>
+                        <br>
+                        Pile into a large dish, scatter with the rest of the peanuts and coriander, and serve with
+                        lime wedges and sweet chilli sauce.
+                    </p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-3" style="width: 100%;">
+    <div class="row g-0">
+        <div class="col-md-3">
+            <img src="{{ url_for('static', filename= 'assets/img/pennang-chicken.jpg') }}"
+                class="img-fluid rounded-start" alt="pannang chicken curry">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h3 class="card-title">Panang chicken curry</h3>
+                <br>
+                <h5>Ingredients</h5>               
+
+                <ul>
+                    <li>400ml can coconut milk</li>
+                    <li>2 tbsp panang curry paste</li>
+                    <li>200g chicken breast, thinly sliced</li>
+                    <li>100g French beans, halved</li>
+                    <li>2-3 tbsp fish sauce</li>
+                    <li>1-2 tbsp palm sugar or brown sugar</li>
+                    <li>2 makrut lime leaves, central woody stem removed, finely shredded</li>
+                    <li>handful of Thai basil leaves</li>
+                    <li>cooked jasmine rice, to serve</li>
+                    <li>½ large red chilli, thinly sliced, to serve</li>
+
+                </ul>
+                <h5>Method</h5>
+
+                <p class="card-text"><strong>STEP 1</strong>
+                    <br>
+                    Add 2-3 tbsp of the thick part of the coconut milk into a saucepan over a medium-high heat.
+                    When the coconut milk starts bubbling, add 1-2 tbsp of the curry paste and stir well for
+                    about 1 min, until fragrant.
+
+                    <br>
+                    <br>
+
+                    <strong>STEP 2</strong>
+                    <br>
+                    Stir in the chicken and let it cook for about 3-4 mins until beginning to brown all over.
+                    Follow with the French beans and stir well.
+
+                    <br>
+                    <br>
+
+                    <strong>STEP 3</strong>
+                    <br>
+                    Season with the fish sauce and sugar, then add the rest of coconut milk. Mix well, add half
+                    the makrut lime leaves and simmer for 3-5 mins until the chicken is cooked through. Taste
+                    and add more sugar or fish sauce if necessary - it should be salty and nutty, and the
+                    sweetness should come through. Add the Thai basil leaves, give it a quick mix and take off
+                    the heat. Serve with steamed jasmine rice, garnished with the sliced chilli and the rest of
+                    the makrut lime leaves.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-3" style="width: 100%;">
+    <div class="row g-0">
+        <div class="col-md-3">
+            <img src="{{ url_for('static', filename= 'assets/img/Thai-rice.jpg') }}" class="img-fluid rounded-start"
+                alt="thai rice">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h3 class="card-title">Thai fried rice with prawns & peas</h3>
+                <br>
+                <h5>Ingredients</h5>
+                <ul>
+                    <li>2 tbsp vegetable oil</li>
+                    <li>1 red onion, halved and sliced</li>
+                    <li>2 garlic cloves, sliced</li>
+                    <li>1 red chilli, sliced</li>
+                    <li>250g raw large peeled prawn</li>
+                    <li>300g cooked brown rice (about 140g uncooked rice)</li>
+                    <li>75g frozen pea</li>
+                    <li>1 tbsp dark soy sauce</li>
+                    <li>1 tbsp fish sauce</li>
+                    <li>small bunch coriander, roughly chopped, plus a few leaves to serve</li>
+                    <li>4 large eggs</li>
+                    <li>chilli sauce, to serve (optional- we used sriracha)</li>
+                </ul>
+                <br>
+                <h5>Method</h5>
+                <p class="card-text"><strong>STEP 1</strong>
+                    <br>
+                    Heat 1 tbsp of the oil in a wok, add the onion, garlic and chilli, and cook for 2-3 mins
+                    until golden. Add the prawns and cook for 1 min. Tip in the rice and peas, and keep tossing
+                    until very hot. Add the soy and fish sauce, then stir through the chopped coriander. Keep
+                    warm while you fry the eggs.
+                    <br>
+                    <br>
+
+                    <strong>STEP 2</strong>
+                    <br>
+                    Heat the remaining oil in a frying pan and fry the eggs with some seasoning. Divide the
+                    fried rice mix between 4 bowls and top each with a fried egg. Serve scattered with
+                    coriander, with chilli sauce, if you like.
+                    <br>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

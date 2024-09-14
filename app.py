@@ -24,12 +24,42 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/home")
 def index():
-    return render_template("index.html", username=session["user"])
+    return render_template("index.html")
 
 
 @app.route("/about")
 def about():
-    return render_template("about.html", page_title="About Us", username=session["user"])
+    return render_template("about.html", page_title="About Us")
+
+
+@app.route("/american")
+def american():
+    return render_template("american.html", page_title="American")
+
+
+@app.route("/thai")
+def thai():
+    return render_template("thai.html", page_title="Thai")
+
+
+@app.route("/italian")
+def italian():
+    return render_template("italian.html", page_title="Italian")
+
+
+@app.route("/indian")
+def indian():
+    return render_template("indian.html", page_title="Indian")
+
+
+@app.route("/mexican")
+def mexican():
+    return render_template("mexican.html", page_title="Mexican")
+
+
+@app.route("/chinese")
+def chinese():
+    return render_template("chinese.html", page_title="Chinese")
 
 
 # Routing for the recipes page
@@ -94,7 +124,7 @@ def login():
                     flash("Welcome, {}".format(
                         request.form.get("username")))
                     return redirect(
-                        url_for("recipies", username=session["user"]))
+                        url_for("recipies"))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
