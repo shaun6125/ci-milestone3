@@ -24,12 +24,12 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/home")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", username=session["user"])
 
 
 @app.route("/about")
 def about():
-    return render_template("about.html", page_title="About Us")
+    return render_template("about.html", page_title="About Us", username=session["user"])
 
 
 # Routing for the recipes page
@@ -38,7 +38,7 @@ def about():
 def recipies():
     # display last added recipe first
     recipies = list(mongo.db.recipe.find().sort("_id", -1))
-    return render_template("recipies.html", recipe=recipies)
+    return render_template("recipies.html", recipe=recipies, username=session["user"])
 
 
 @app.route("/contact", methods=["GET", "POST"])
@@ -46,7 +46,7 @@ def contact():
     if request.method == "POST":
         flash("Thanks {}, we have resieved your message!".format(
             request.form.get("name")))
-    return render_template("contact.html", page_title="Contact Us")
+    return render_template("contact.html", page_title="Contact Us", username=session["user"])
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -73,7 +73,7 @@ def register():
         # put the new user into 'session' cookie
         session["user"] = username
         flash("Registration Successful")
-        return redirect(url_for("profile", username=session["user"]))  # Redirect to user profile page after successful registration
+        return redirect(url_for("recipies", username=session["user"]))  # Redirect to user recipe page after successful registration
 
     # Render the registration form
     return render_template('register.html')
@@ -94,7 +94,7 @@ def login():
                     flash("Welcome, {}".format(
                         request.form.get("username")))
                     return redirect(
-                        url_for("profile", username=session["user"]))
+                        url_for("recipies", username=session["user"]))
             else:
                 # invalid password match
                 flash("Incorrect Username and/or Password")
@@ -115,7 +115,7 @@ def profile(username):
         {"username": session["user"]})["username"]
 
     if session["user"]:
-        return render_template("profile.html", username=username)
+        return render_template("recipies.html", username=username)
 
     return redirect(url_for("login"))
 
@@ -150,7 +150,7 @@ def add_recipe():
         return redirect(url_for("recipies"))
 
     categories = mongo.db.categories.find().sort("category_name", 1)
-    return render_template("add_recipe.html", categories=categories)
+    return render_template("add_recipe.html", categories=categories, username=session["user"])
 
 
 # Routing for the edit recipe page
@@ -177,14 +177,14 @@ def edit_recipe(recipe_id):
     recipe = mongo.db.recipe.find_one({"_id": ObjectId(recipe_id)})
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template(
-        "edit_recipe.html", recipe=recipe, categories=categories)
+        "edit_recipe.html", recipe=recipe, categories=categories, username=session["user"])
 
 
 @app.route("/delete_recipe/<recipe_id>")
 def delete_recipe(recipe_id):
     mongo.db.recipe.delete_one({"_id": ObjectId(recipe_id)})
     flash("Recipe Successfully Deleted")
-    return redirect(url_for("recipies"))
+    return redirect(url_for("recipies", username=session["user"]))
 
 
 if __name__ == "__main__":

@@ -31,11 +31,15 @@
                             </li>
                             <li class="list-group-item">
                                 <strong>Origin:</strong> {{ recipies.category_name }}    <strong>Published:</strong> {{ recipies.date_added }}
+                                 <!-- Add creator details from session cookie -->
+                                <em>by: {{ recipies.created_by }}</em>
                             </li>
+                            {% if session.user|lower == recipies.created_by|lower %}
                             <li class="list-group-item">
                                 <a href="{{ url_for('edit_recipe',recipe_id=recipies._id)}}" class="btn btn-outline-secondary btn-lg px-4 me-md-6 " id="edit-btn">Edit</a> 
                                 <a href="{{ url_for('delete_recipe',recipe_id=recipies._id)}}" class="btn btn-primary btn-dark btn-lg px-4 me-md-2 " id="delete-btn">Delete</a>
-                            </li>                          
+                            </li>
+                            {% endif %}                          
                         </ul>
                       </div>                             
                 </div>

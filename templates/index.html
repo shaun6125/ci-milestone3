@@ -132,7 +132,17 @@
         <div class="col-lg-6 mx-auto">
             <p class="lead mb-4">Publish your recipe in front of thousands of people for free.</p>
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <a href="#" class="btn btn-primary btn-dark btn-lg">Submit Recipe</a>
+
+                {% if session.user %}
+
+                <a href="{{ url_for('add_recipe') }}" class="btn btn-primary btn-dark btn-lg">Submit Recipe</a>
+
+                {% else %}
+
+                <a href="{{ url_for('register') }}" class="btn btn-primary btn-dark btn-lg">Submit Recipe</a>
+
+                {% endif %}
+
             </div>
         </div>
     </section>
